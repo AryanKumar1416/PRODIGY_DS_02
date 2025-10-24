@@ -1,45 +1,97 @@
-# Titanic Survival Prediction 🚢
+# Titanic Survival Prediction - Exploratory Data Analysis & Machine Learning
 
-![Python](https://img.shields.io/badge/Python-3.11-blue) ![Pandas](https://img.shields.io/badge/Pandas-Data_Analysis-brightgreen) ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-ML-yellow)
+## 📌 Project Overview
 
-Predict passenger survival on the Titanic using exploratory data analysis (EDA) and machine learning.
+This project performs **Exploratory Data Analysis (EDA)** and builds a **Logistic Regression model** to predict passenger survival on the **Titanic** dataset.
 
----
-
-## 📖 Project Overview
-
-This project performs a full data analysis and builds a predictive model for the Titanic dataset:
-
-1. **Data Loading & Exploration** – Inspect dataset, check missing values, and view descriptive statistics.  
-2. **Data Cleaning & Preprocessing** – Handle missing values, drop irrelevant columns.  
-3. **Exploratory Data Analysis (EDA)** – Visualize distributions, correlations, and survival patterns.  
-4. **Feature Engineering** – Create `FamilySize`, `IsAlone`, and extract `Title` from names.  
-5. **Feature Encoding & Scaling** – One-hot encode categorical variables and scale numerical features.  
-6. **Model Training & Evaluation** – Train a Logistic Regression model and evaluate performance using accuracy, precision, recall, and F1-score.  
+The goal is to understand the key factors affecting survival and develop a machine learning pipeline that includes **data preprocessing, feature engineering, model training, and evaluation**.
 
 ---
 
-## 📊 Key Insights from EDA
+## 📁 Dataset
 
-* Female passengers had higher survival rates than males.  
-* Passengers in 1st class had higher chances of survival.  
-* Traveling alone decreased survival probability.  
-* Certain titles (`Mr`, `Mrs`, `Miss`) correlate with survival outcomes.
+The dataset used is from the **Titanic survival challenge**. It contains passenger details such as:
+
+| Feature | Description |
+|---------|-------------|
+| Pclass  | Passenger class (1st, 2nd, 3rd) |
+| Sex     | Gender of the passenger |
+| Age     | Age in years |
+| SibSp   | Number of siblings/spouses aboard |
+| Parch   | Number of parents/children aboard |
+| Fare    | Passenger fare |
+| Embarked| Port of embarkation |
+| Survived| Target variable (0 = No, 1 = Yes) |
 
 ---
 
-## 🛠 Technologies Used
+## 🧹 Data Cleaning & Preprocessing
 
-* **Python** – Data processing and modeling  
-* **Pandas & NumPy** – Data manipulation  
-* **Matplotlib & Seaborn** – Data visualization  
-* **Scikit-learn** – Machine learning & evaluation  
+- Missing values in **Age** were imputed using the **median**.
+- Missing values in **Embarked** were **removed**.
+- **Cabin** was **dropped** due to excessive missing data.
+- Created new features:
+  - `FamilySize` → SibSp + Parch + 1
+  - `IsAlone` → 1 if FamilySize == 1, else 0
+  - `Title` → Extracted from Name
 
 ---
 
-## ⚡ Installation & Usage
+## 📊 Exploratory Data Analysis (EDA)
 
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/yourusername/titanic-survival-prediction.git
-   cd titanic-survival-prediction
+- Value counts of **Survived**, **Sex**, and **Pclass**
+- Count plots showing survival distribution across **gender and class**
+- **Age distribution histogram**
+- **Correlation heatmap** to identify strong relationships
+- **Violin plot**: Age vs Survival by Pclass
+- **Scatter plot**: Fare vs Age
+
+---
+
+## 🔢 Feature Encoding & Scaling
+
+- Applied **One-Hot Encoding** to categorical variables (`Sex`, `Embarked`, `Title`)
+- Standardized numerical features (`Age`, `Fare`, `FamilySize`, etc.) using **StandardScaler**
+
+---
+
+## 🧠 Model Training
+
+- Split the dataset into **Training (X_train, y_train)** and **Testing sets**
+- Trained a **Logistic Regression model**
+- Evaluated using:
+  - ✅ Accuracy
+  - ✅ Precision
+  - ✅ Recall
+  - ✅ F1-Score
+
+---
+
+## ✅ Conclusion
+
+The project demonstrates a complete **end-to-end data science workflow**:
+
+✔️ Data Cleaning  
+✔️ EDA and Visualization  
+✔️ Feature Engineering  
+✔️ Model Training & Evaluation  
+
+The **Logistic Regression model performed well**, but future enhancements may include:
+
+- Trying **Random Forest / XGBoost / SVM**
+- **Hyperparameter tuning**
+- Advanced **feature selection techniques**
+
+---
+
+## 🚀 How to Run the Project
+
+```bash
+# Clone the repository
+git clone <your-repo-link>
+
+# Install required libraries
+pip install -r requirements.txt
+
+# Open the notebook
+jupyter notebook Titanic_EDA_Model.ipynb
